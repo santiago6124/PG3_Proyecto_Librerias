@@ -15,26 +15,21 @@ def rqst_graph_ind(ticker, timefr, limite, indicador):
         indicador1 = df.ta.adx()
         plt.plot(indicador1.values)
         plt.savefig('grafico.png')
-        plt.show()
+
     elif indicador == 2:
         indicador2 = df.ta.macd(fast=14, slow=28)
         plt.plot(indicador2.values)
         plt.savefig('grafico.png')
-        plt.show()
+
     elif indicador == 3:
         indicador3 = df.ta.rsi()
         plt.plot(indicador3.values)
         plt.savefig('grafico.png')
-        plt.show()
 
-
-#rqst_graph_ind("ETH/USDT", "1h", 100, 1)
-
-
-def rqst_graph():
+def rqst_graph(moneda):
     # ahora para que se haga el gráfico desde un archivo externo
 
-    dt = pd.read_csv("btc.csv")[["unix", "open", "high", "low", "close"]]
+    dt = pd.read_csv(moneda)[["unix", "open", "high", "low", "close"]]
     dt.sort_values(by="unix", inplace=True)
     dt["date"] = pd.to_datetime(dt["unix"], unit="s")
 
@@ -42,7 +37,4 @@ def rqst_graph():
 
     plt.plot(dt.date, dt.close)
     plt.plot(dt.date, dt.SMA_100)
-    plt.show()
-
-
-#rqst_graph()
+    plt.savefig('grafico.png')
