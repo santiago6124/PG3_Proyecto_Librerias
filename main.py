@@ -35,12 +35,22 @@ async def test(ctx):
     await ctx.send(response)
 
 
-# COMANDOS PARA EL GRAPHIND
+# COMANDOS PARA AYUDAS
 @bot.command(name="ayuda_graphind", help="Indica como usar el comando !graphind")
 async def help_graphind(ctx):
     response = f"El comando graphind se utiliza de la siguiente manera: !graphind <ticker> <timefr> <limite> <indicador>"
     await ctx.send(response)
+@bot.command(name="ayuda_alert", help="Indica como usar el comando !alert")
+async def help_graphind(ctx):
+    response = f"El comando alert se utiliza de la siguiente manera: !alert <ticker> <timefr> <limite> <indicador>"
+    await ctx.send(response)
 
+@bot.command(name="ayuda_graphlocal", help="Indica como usar el comando !graphlocal")
+async def ayuda_graphlocal(ctx):
+    response = f"El comando utiliza un base de datos para mostrar el grapfico y el indicador seleccionado entre las siguientes opciones: BTC, ETH, ADA "
+    await ctx.send(response)
+
+#COMANDOS PARA EL GRAPHIND
 
 @bot.command(name="graphind", help="Comando para graficar indicadores")
 async def graphind(ctx, ticker, timefr, limite, indicador):
@@ -53,12 +63,6 @@ async def graphind(ctx, ticker, timefr, limite, indicador):
 
 
 # COMANDOS PARA EL GRAPH LOCAL
-
-
-@bot.command(name="ayuda_graphlocal", help="Indica como usar el comando !graphlocal")
-async def ayuda_graphlocal(ctx):
-    response = f"El comando utiliza un base de datos para mostrar el grapfico y el indicador seleccionado entre las siguientes opciones: BTC, "
-    await ctx.send(response)
 
 
 @bot.command(name="graph_btc", help="Comando para graficar bitcoin y la media movil")
