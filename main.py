@@ -35,9 +35,21 @@ async def test(ctx):
     await ctx.send(response)
 
 
-@bot.command(name="luukinho", help="Una foto del mejor 9 del mundo")
-async def luuk(ctx):
-    await ctx.send(file=discord.File("pfp.jpeg"))
+@bot.command(name="ayuda_graphind", help="Indica como usar el comando !graphind")
+async def help_graphind(ctx):
+    response = f"El comando graphind se utiliza de la siguiente manera: !graphind <ticker> <timefr> <limite> <indicador>"
+    await ctx.send(response)
+
+
+@bot.command(name="graphind", help="Comando para graficar indicadores")
+async def graphind(ctx, ticker, timefr, limite, indicador):
+    graph.rqst_graph_ind(ticker, timefr, int(limite), int(indicador))
+    await ctx.send(file=discord.File("grafico.png"))
+    try:
+        os.remove("grafico.png")
+    except FileNotFoundError:
+        pass
+
 
 
 bot.run(TOKEN)

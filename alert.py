@@ -99,4 +99,4 @@ def alerta(ticker, timefr, limite, indicador):
             )
 
 
-alerta("ETH/USDT", "5m", 100, 2)
+#alerta("ETH/USDT", "5m", 100, 2)

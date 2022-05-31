@@ -14,21 +14,21 @@ def rqst_graph_ind(ticker, timefr, limite, indicador):
     if indicador == 1:
         indicador1 = df.ta.adx()
         plt.plot(indicador1.values)
-        # plt.savefig('grafico.png')
+        plt.savefig('grafico.png')
         plt.show()
     elif indicador == 2:
         indicador2 = df.ta.macd(fast=14, slow=28)
         plt.plot(indicador2.values)
-        # plt.savefig('grafico.png')
+        plt.savefig('grafico.png')
         plt.show()
     elif indicador == 3:
         indicador3 = df.ta.rsi()
         plt.plot(indicador3.values)
-        # plt.savefig('grafico.png')
+        plt.savefig('grafico.png')
         plt.show()
 
 
-rqst_graph_ind("ETH/USDT", "1h", 100, 1)
+#rqst_graph_ind("ETH/USDT", "1h", 100, 1)
 
 
 def rqst_graph():
@@ -38,11 +38,11 @@ def rqst_graph():
     dt.sort_values(by="unix", inplace=True)
     dt["date"] = pd.to_datetime(dt["unix"], unit="s")
 
-    dt.ta.sma(length=periodos, append=True)
+    dt.ta.sma(length= 100, append=True)
 
     plt.plot(dt.date, dt.close)
     plt.plot(dt.date, dt.SMA_100)
     plt.show()
 
 
-rqst_graph()
+#rqst_graph()
