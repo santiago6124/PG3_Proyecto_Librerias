@@ -34,7 +34,8 @@ async def test(ctx):
     response = "El bot esta conectado!"
     await ctx.send(response)
 
-#COMANDOS PARA EL GRAPHIND
+
+# COMANDOS PARA EL GRAPHIND
 @bot.command(name="ayuda_graphind", help="Indica como usar el comando !graphind")
 async def help_graphind(ctx):
     response = f"El comando graphind se utiliza de la siguiente manera: !graphind <ticker> <timefr> <limite> <indicador>"
@@ -50,12 +51,15 @@ async def graphind(ctx, ticker, timefr, limite, indicador):
     except FileNotFoundError:
         pass
 
-#COMANDOS PARA EL GRAPH LOCAL
+
+# COMANDOS PARA EL GRAPH LOCAL
+
 
 @bot.command(name="ayuda_graphlocal", help="Indica como usar el comando !graphlocal")
 async def ayuda_graphlocal(ctx):
     response = f"El comando utiliza un base de datos para mostrar el grapfico y el indicador seleccionado entre las siguientes opciones: BTC, "
     await ctx.send(response)
+
 
 @bot.command(name="graph_btc", help="Comando para graficar bitcoin y la media movil")
 async def graph_btc(ctx):
@@ -66,8 +70,9 @@ async def graph_btc(ctx):
     except FileNotFoundError:
         pass
 
+
 @bot.command(name="graph_eth", help="Comando para graficar ethereum y la media movil")
-async def graph_btc(ctx):
+async def graph_eth(ctx):
     graph.rqst_graph("eth.csv")
     await ctx.send(file=discord.File("grafico.png"))
     try:
@@ -75,14 +80,24 @@ async def graph_btc(ctx):
     except FileNotFoundError:
         pass
 
+
 @bot.command(name="graph_ada", help="Comando para graficar cardano y la media movil")
-async def graph_btc(ctx):
+async def graph_ada(ctx):
     graph.rqst_graph("ada.csv")
     await ctx.send(file=discord.File("grafico.png"))
     try:
         os.remove("grafico.png")
     except FileNotFoundError:
         pass
+
+
+# COMANDO PARA LA ALERTA
+
+
+@bot.command(name="alert", help="Comando para mostrar la tendencia de un activo")
+async def alertar(ctx, ticker, timefr, limite, indicador):
+    response = alert.alerta(ticker, timefr, int(limite), int(indicador))
+    await ctx.send(response)
 
 
 bot.run(TOKEN)
