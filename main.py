@@ -85,15 +85,6 @@ async def graph_eth(ctx):
         pass
 
 
-@bot.command(name="graph_ada", help="Comando para graficar cardano y la media movil")
-async def graph_ada(ctx):
-    graph.rqst_graph("ada.csv")
-    await ctx.send(file=discord.File("grafico.png"))
-    try:
-        os.remove("grafico.png")
-    except FileNotFoundError:
-        pass
-
 
 # COMANDO PARA LA ALERTA
 

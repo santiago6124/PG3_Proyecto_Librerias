@@ -39,3 +39,4 @@ def rqst_graph(moneda):
     plt.plot(dt.date, dt.close)
     plt.plot(dt.date, dt.SMA_100)
     plt.savefig("grafico.png")
+    plt.close()
